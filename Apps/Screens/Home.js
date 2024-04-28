@@ -11,4 +11,4 @@ const Home = () => {
 
 const styles = StyleSheet.create({});
 
-export default HomeScreens;
+export default Home;

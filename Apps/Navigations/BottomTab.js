@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import Home from "../../src/screens/Home";
 import WishList from "../Screens/WishLists";
 import Order from "../Screens/Orders";
 import Account from "../Screens/Account";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Home from "../Screens/Home";
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 const BottomTab = () => {
   return (
     <Tab.Navigator>
