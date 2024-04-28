@@ -6,16 +6,16 @@ import {
   SafeAreaView,
   useColorScheme,
 } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
+import * as Animatable from "react-native-animatable";
+import Home from "../Screens/Home";
 import WishList from "../Screens/WishLists";
 import Order from "../Screens/Orders";
 import Account from "../Screens/Account";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../Screens/Home";
-import { FontAwesome } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import Colors from "../Components/Colors";
-import { useTheme } from "@react-navigation/native";
-import * as Animatable from "react-native-animatable";
+import Colors from "../Colors";
 
 const TabArr = [
   {
@@ -62,11 +62,6 @@ const Icon = ({ type, name, color, size = 24, style }) => {
       )}
     </>
   );
-};
-
-const Icons = {
-  MaterialIcons,
-  FontAwesome,
 };
 
 const Tab = createBottomTabNavigator();

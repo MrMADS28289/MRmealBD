@@ -23,6 +23,7 @@
         "backgroundColor": "#ffffff"
       }
     },
+    "scheme": "exponavigation",
     "web": {
       "favicon": "./assets/favicon.png"
     },
@@ -35,6 +36,5 @@
         "projectId": "04d83266-3264-4403-83d9-75fa40bb8cd8"
       }
     },
-    "scheme": "your-app-scheme"
   }
 }
