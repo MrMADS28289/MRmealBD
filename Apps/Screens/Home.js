@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import GetStarted from "./GetStarted";
 
 const Home = () => {
   return (
     <View>
-      <Text className="text-center text-green-700">HomeScreens</Text>
+      <GetStarted />
     </View>
   );
 };
