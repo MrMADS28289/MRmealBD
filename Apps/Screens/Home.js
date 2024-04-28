@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from "react-native";
 const Home = () => {
   return (
     <View>
-      <Text>HomeScreens</Text>
+      <Text className="text-center text-green-700">HomeScreens</Text>
     </View>
   );
 };
