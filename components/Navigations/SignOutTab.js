@@ -11,7 +11,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 
-import { ClerkProvider } from "@clerk/clerk-expo";
+// import { ClerkProvider } from "@clerk/clerk-expo";
 import Home from "../Screens/Home";
 import WishList from "../Screens/WishLists";
 import Order from "../Screens/Orders";
@@ -138,7 +138,7 @@ const TabButton = (props) => {
   );
 };
 
-const BottomTab = () => {
+const SignOutTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -199,4 +199,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BottomTab;
+export default SignOutTab;

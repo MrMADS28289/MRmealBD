@@ -10,13 +10,11 @@ import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-
-import { ClerkProvider } from "@clerk/clerk-expo";
-import Home from "../Screens/Home";
-import WishList from "../Screens/WishLists";
-import Order from "../Screens/Orders";
-import Account from "../Screens/Account";
-import Colors from "../Colors";
+import Account from "./Screens/Account";
+import Order from "./Screens/Orders";
+import WishList from "./Screens/WishLists";
+import Home from "./Screens/Home";
+import Colors from "./Colors";
 
 const TabArr = [
   {
@@ -138,7 +136,7 @@ const TabButton = (props) => {
   );
 };
 
-const BottomTab = () => {
+const SignInScreen = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -199,4 +197,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BottomTab;
+export default SignInScreen;
