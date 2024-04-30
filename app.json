@@ -29,14 +29,19 @@
     },
     "plugins": [
       "expo-build-properties",
-      "expo-router"
+      "expo-router",
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
+        }
+      ]
     ],
     "extra": {
       "clerkPublishableKey": "process.env.CLERK_PUBLISHABLE_KEY",
       "eas": {
         "projectId": "04d83266-3264-4403-83d9-75fa40bb8cd8"
-        
       }
-    },
+    }
   }
 }

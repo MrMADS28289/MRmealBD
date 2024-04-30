@@ -1,7 +1,7 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { useRouter } from "expo-router";
 
 const WelcomeScreen = () => {
   const router = useRouter();
