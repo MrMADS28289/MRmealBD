@@ -3,7 +3,7 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
-const WelcomeScreen = () => {
+export default function GetStart() {
   const router = useRouter();
 
   return (
@@ -37,7 +37,7 @@ const WelcomeScreen = () => {
         </Animated.Text>
         <Animated.View entering={FadeInDown.duration(500)}>
           <TouchableOpacity
-            onPress={() => router.push("home")}
+            onPress={() => router.navigate("(tabs)")}
             className="p-4 bg-gray-900 rounded-full mt-20 border-2 border-cyan-50"
           >
             <Text className="text-slate-100 font-bold text-center text-[18px]">
@@ -47,7 +47,5 @@ const WelcomeScreen = () => {
         </Animated.View>
       </Animated.View>
     </View>
-  );
-};
-
-export default WelcomeScreen;
+  )
+}

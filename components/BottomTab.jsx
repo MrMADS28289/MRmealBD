@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  SafeAreaView,
   useColorScheme,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,11 +11,11 @@ import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-import Account from "./Screens/Account";
-import Order from "./Screens/Orders";
-import WishList from "./Screens/WishLists";
-import Home from "./Screens/Home";
-import Colors from "./Colors";
+import Home from "./screens/Home";
+import WishList from "./screens/Wishlist";
+import Order from "./screens/Order";
+import Account from "./screens/Account";
+import Colors from "../constants/Colors";
 
 const TabArr = [
   {
@@ -136,7 +137,7 @@ const TabButton = (props) => {
   );
 };
 
-const SignInScreen = () => {
+const BottomTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -197,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default BottomTab;
