@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-export default function WishList() {
+export default function MyHome() {
   return (
     <View>
-      <Text>WishLists</Text>
+      <Text>MyHome</Text>
     </View>
   );
 }

@@ -23,7 +23,7 @@
         "backgroundColor": "#ffffff"
       }
     },
-    "scheme": "exponavigation",
+    "scheme": "mrmealbd",
     "web": {
       "favicon": "./assets/favicon.png"
     },
@@ -44,7 +44,6 @@
       ]
     ],
     "extra": {
-      "clerkPublishableKey": "process.env.CLERK_PUBLISHABLE_KEY",
       "eas": {
         "projectId": "04d83266-3264-4403-83d9-75fa40bb8cd8"
       }
