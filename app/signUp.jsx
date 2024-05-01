@@ -5,20 +5,20 @@ import {
   TextInput,
   TouchableOpacity,
   Pressable,
-  Alert,
+  StyleSheet,
 } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { StatusBar } from "expo-status-bar";
-import { Octicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import Loading from "../../components/Loading";
+import { MaterialIcons, Octicons } from "@expo/vector-icons";
+import Loading from "../components/Loading";
 import LottieView from "lottie-react-native";
 
-export default function LogIn() {
+export default function SignUp() {
+  const [loading, setLoading] = useState(false);
   return (
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
@@ -30,7 +30,7 @@ export default function LogIn() {
           <Image
             style={{ height: hp(25) }}
             resizeMode="contain"
-            source={require("../../assets/Images/login.png")}
+            source={require("../assets/Images/register.png")}
           />
         </View>
 
@@ -42,10 +42,27 @@ export default function LogIn() {
             style={{ fontSize: hp(4) }}
             className="font-bold tracking-wider text-center text-white mt-4"
           >
-            Sign In
+            Sign Up
           </Text>
 
           <View className="gap-4 mt-4">
+            <View
+              style={{ height: hp(6.5) }}
+              className="flex-row items-center px-4 bg-neutral-700 border border-white rounded-xl"
+            >
+              <MaterialIcons
+                name="drive-file-rename-outline"
+                size={hp(2.7)}
+                color="white"
+              />
+              <TextInput
+                onChangeText={(value) => (nameRef.current = value)}
+                style={{ fontSize: hp(2) }}
+                className="flex-1 font-semibold text-white mx-2"
+                placeholder="Full name"
+                placeholderTextColor={"white"}
+              />
+            </View>
             <View
               style={{ height: hp(6.5) }}
               className="flex-row items-center px-4 bg-neutral-700 border border-white rounded-xl"
@@ -59,27 +76,19 @@ export default function LogIn() {
                 placeholderTextColor={"white"}
               />
             </View>
-            <View>
-              <View
-                style={{ height: hp(6.5) }}
-                className="flex-row items-center px-4 bg-neutral-700 border border-white rounded-xl"
-              >
-                <Octicons name="lock" size={hp(2.7)} color="white" />
-                <TextInput
-                  onChangeText={(value) => (passwordRef.current = value)}
-                  style={{ fontSize: hp(2) }}
-                  className="flex-1 font-semibold text-white mx-2"
-                  placeholder="Password"
-                  secureTextEntry
-                  placeholderTextColor={"white"}
-                />
-              </View>
-              <Text
-                style={{ fontSize: hp(1.8) }}
-                className="font-semibold text-right text-white mt-1"
-              >
-                Forgot password?
-              </Text>
+            <View
+              style={{ height: hp(6.5) }}
+              className="flex-row items-center px-4 bg-neutral-700 border border-white rounded-xl"
+            >
+              <Octicons name="lock" size={hp(2.7)} color="white" />
+              <TextInput
+                onChangeText={(value) => (passwordRef.current = value)}
+                style={{ fontSize: hp(2) }}
+                className="flex-1 font-semibold text-white mx-2"
+                placeholder="Password"
+                secureTextEntry
+                placeholderTextColor={"white"}
+              />
             </View>
 
             <View>
@@ -97,7 +106,7 @@ export default function LogIn() {
                     style={{ fontSize: hp(2.4) }}
                     className="text-white font-semibold tracking-wider"
                   >
-                    Login
+                    Signup
                   </Text>
                 </TouchableOpacity>
               )}
@@ -108,14 +117,14 @@ export default function LogIn() {
                 style={{ fontSize: hp(1.8) }}
                 className="font-semibold text-white"
               >
-                Don't have an account?{" "}
+                Have an account?{" "}
               </Text>
-              <Pressable onPress={() => router.push("/register")}>
+              <Pressable onPress={() => router.push("/login")}>
                 <Text
                   style={{ fontSize: hp(1.8) }}
                   className="font-bold text-neutral-800 underline"
                 >
-                  Signup
+                  Signin
                 </Text>
               </Pressable>
             </View>
@@ -134,13 +143,12 @@ export default function LogIn() {
 
             <View className="flex-row items-center justify-evenly">
               <TouchableOpacity
-                onPress={googleSignIn}
                 style={{ aspectRatio: 1, height: hp(7) }}
                 className="bg-white border border-neutral-800 rounded-2xl flex-row"
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../../assets/Images/google.json")}
+                  source={require("../assets/Images/google.json")}
                   loop={false}
                   autoPlay
                 />
@@ -151,7 +159,7 @@ export default function LogIn() {
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../../assets/Images/facebook.json")}
+                  source={require("../assets/Images/facebook.json")}
                   loop={false}
                   autoPlay
                 />
@@ -162,7 +170,7 @@ export default function LogIn() {
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../../assets/Images/phone.json")}
+                  source={require("../assets/Images/phone.json")}
                   loop={false}
                   autoPlay
                 />
@@ -174,3 +182,24 @@ export default function LogIn() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 20,
+  },
+  inputField: {
+    marginVertical: 4,
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#6c47ff",
+    borderRadius: 4,
+    padding: 10,
+    backgroundColor: "#fff",
+  },
+  button: {
+    margin: 8,
+    alignItems: "center",
+  },
+});
