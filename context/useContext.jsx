@@ -1,10 +1,18 @@
 import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import {
   Children,
   createContext,
   useContext,
   useEffect,
   useState,
 } from "react";
+import { auth, db } from "../firebaseConfig";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
@@ -13,20 +21,72 @@ export const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(undefined);
 
   useEffect(() => {
-    // onAuthStateChanged
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+        setUser(user);
+        updateUserData(user.uid);
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+    });
+    return unsub;
   }, []);
+
+  const updateUserData = async (userId) => {
+    const docRef = doc(db, "users", userId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      let data = docSnap.data();
+      setUser({
+        ...user,
+        username: data.username,
+        profileUrl: data.profileUrl,
+        userId: data.userId,
+      });
+    }
+  };
 
   const login = async (email, password) => {
     try {
-    } catch (err) {}
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      return { success: true, response: response };
+    } catch (err) {
+      let msg = err.message;
+      if (msg.includes("(auth/invalid-email)")) msg = "Invalid email";
+      return { success: false, msg: err.message };
+    }
   };
   const logout = async () => {
     try {
-    } catch (err) {}
+      await signOut(auth);
+      return { success: true };
+    } catch (err) {
+      return { success: false, msg: err.message, error: err };
+    }
   };
   const register = async (email, password, username) => {
     try {
-    } catch (err) {}
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // console.log("response.user:", response?.user);
+
+      await setDoc(doc(db, "users", response?.user?.uid), {
+        username,
+        profileUrl: "",
+        userId: response?.user?.uid,
+      });
+      return { success: true, data: response?.user };
+    } catch (err) {
+      let msg = err.message;
+      if (msg.includes("(auth/invalid-email)")) msg = "Invalid email";
+      return { success: false, msg: err.message };
+    }
   };
 
   return (

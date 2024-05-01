@@ -17,9 +17,31 @@ import { Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
 import Loading from "../components/Loading";
+import { useAuth } from "../context/useContext";
 
 export default function SignIn() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+
+  const handleSignIn = async () => {
+    if (!emailRef.current || !passwordRef.current) {
+      Alert.alert("Signin", "Please fill all the field");
+      return;
+    }
+
+    setLoading(true);
+    const response = await login(emailRef.current, passwordRef.current);
+    setLoading(false);
+    // console.log("signin response: ", response);
+    if (!response.success) {
+      Alert.alert("Signin", response.msg);
+    }
+  };
+
   return (
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
@@ -90,7 +112,7 @@ export default function SignIn() {
                 </View>
               ) : (
                 <TouchableOpacity
-                  onPress={see}
+                  onPress={handleSignIn}
                   style={{ height: hp(6.5) }}
                   className="bg-neutral-700 justify-center items-center border border-white rounded-xl"
                 >
@@ -111,7 +133,7 @@ export default function SignIn() {
               >
                 Don't have an account?{" "}
               </Text>
-              <Pressable onPress={() => router.push("/register")}>
+              <Pressable onPress={() => router.push("/signUp")}>
                 <Text
                   style={{ fontSize: hp(1.8) }}
                   className="font-bold text-neutral-800 underline"
@@ -135,7 +157,7 @@ export default function SignIn() {
 
             <View className="flex-row items-center justify-evenly">
               <TouchableOpacity
-                onPress={googleSignIn}
+                onPress={console.log("GOOGLE??")}
                 style={{ aspectRatio: 1, height: hp(7) }}
                 className="bg-white border border-neutral-800 rounded-2xl flex-row"
               >

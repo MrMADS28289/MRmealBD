@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   Pressable,
   StyleSheet,
+  Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,9 +17,37 @@ import { StatusBar } from "expo-status-bar";
 import { MaterialIcons, Octicons } from "@expo/vector-icons";
 import Loading from "../components/Loading";
 import LottieView from "lottie-react-native";
+import { useRouter } from "expo-router";
+import { useAuth } from "../context/useContext";
 
 export default function SignUp() {
+  const router = useRouter();
+  const { register } = useAuth();
   const [loading, setLoading] = useState(false);
+
+  const userNameRef = useRef("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+
+  const handleSignUp = async () => {
+    if (!emailRef.current || !passwordRef.current) {
+      Alert.alert("Signin", "Please fill all the field");
+      return;
+    }
+    setLoading(true);
+
+    let response = await register(
+      emailRef.current,
+      passwordRef.current,
+      userNameRef.current
+    );
+    setLoading(false);
+
+    // console.log("got result: ", response);
+    if (!response.success) {
+      Alert.alert("Signup", response.msg);
+    }
+  };
   return (
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
@@ -56,7 +85,7 @@ export default function SignUp() {
                 color="white"
               />
               <TextInput
-                onChangeText={(value) => (nameRef.current = value)}
+                onChangeText={(value) => (userNameRef.current = value)}
                 style={{ fontSize: hp(2) }}
                 className="flex-1 font-semibold text-white mx-2"
                 placeholder="Full name"
@@ -98,7 +127,7 @@ export default function SignUp() {
                 </View>
               ) : (
                 <TouchableOpacity
-                  onPress={see}
+                  onPress={handleSignUp}
                   style={{ height: hp(6.5) }}
                   className="bg-neutral-700 justify-center items-center border border-white rounded-xl"
                 >
@@ -119,7 +148,7 @@ export default function SignUp() {
               >
                 Have an account?{" "}
               </Text>
-              <Pressable onPress={() => router.push("/login")}>
+              <Pressable onPress={() => router.push("/signIn")}>
                 <Text
                   style={{ fontSize: hp(1.8) }}
                   className="font-bold text-neutral-800 underline"
