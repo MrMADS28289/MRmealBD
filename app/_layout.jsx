@@ -1,13 +1,11 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
-import { Link, Stack, useRouter, useSegments } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import * as SecureStore from 'expo-secure-store';
 import { TouchableOpacity, View } from 'react-native';
-// import Colors from '@/constants/Colors';
-// import { Ionicons } from '@expo/vector-icons';
 
 // Cache the Clerk JWT
 const tokenCache = {
@@ -37,7 +35,6 @@ SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
   const { isLoaded, isSignedIn } = useAuth();
-  const segments = useSegments();
   const router = useRouter();
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -55,17 +52,13 @@ const InitialLayout = () => {
     }
   }, [loaded]);
 
-  // useEffect(() => {
-  //   if (!isLoaded) return;
+  useEffect(() => {
+    if (!isLoaded) return;
 
-  //   const inTabsGroup = segments[0] === '(auth)';
-
-  //   if (isSignedIn) {
-  //     router.replace('(tabs)');
-  //   } else if (!isSignedIn) {
-  //     router.replace('/');
-  //   }
-  // }, [isSignedIn]);
+    if (!isSignedIn) {
+      router.push('(tabs)');
+    }
+  }, [isSignedIn]);
 
   if (!loaded || !isLoaded) {
     return <View />;
