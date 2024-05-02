@@ -1,20 +1,27 @@
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function GetStart() {
   const router = useRouter();
+  // const user = useState(true);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     router.replace("(tabs)");
+  //   }
+  // }, [user]);
 
   return (
     <View>
       <Image
         source={require("../assets/Images/delivery.jpg")}
-        className="w-full h-[405px] object-cover"
+        className="w-full h-[405px] object-cover mt-4"
       />
       <Animated.View
         entering={FadeInDown.duration(600)}
-        className="p-8 rounded-t-3xl bg-yellow-400 h-full mt-[-20px]"
+        className="p-8 rounded-t-3xl bg-yellow-400 h-full mt-[-5px]"
       >
         <Animated.Text
           entering={FadeInDown.duration(200)}
@@ -30,7 +37,7 @@ export default function GetStart() {
         </Animated.Text>
         <Animated.Text
           entering={FadeInDown.duration(400)}
-          className="text-[10px] text-white mt-4"
+          className="text-[11px] text-white mt-4"
         >
           "A restaurant is a place where you go to celebrate a special occasion,
           or to create a new one."
@@ -47,5 +54,5 @@ export default function GetStart() {
         </Animated.View>
       </Animated.View>
     </View>
-  )
+  );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Stack } from "expo-router";
+import MainHeader from "../../components/MainHeader";
 
 export default function _layout() {
   return (
@@ -7,7 +8,7 @@ export default function _layout() {
       <Stack.Screen
         name="index"
         options={{
-          headerShown: false,
+          header: () => <MainHeader />,
         }}
       />
     </Stack>

@@ -1,35 +1,29 @@
-import { Slot, useRouter, useSegments } from "expo-router";
-import { View } from "react-native";
-import { AuthContextProvider, useAuth } from "../context/useContext";
+import { Slot, Stack, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
 
-const MainLayout = () => {
-  const { isAuthenticated } = useAuth();
-  const segments = useSegments();
-  const router = useRouter();
+const InitialLayout = () => {
+  // const { isLoaded, isSignedIn } = useAuth();
+  // const segments = useSegments();
+  // const router = useRouter();
 
-  useEffect(() => {
-    // check if user authenticated or not
-    if (typeof isAuthenticated == "undefined") return;
-    const inApp = segments[0] == "(app)";
-    if (isAuthenticated && !inApp) {
-      // redirect to home
-      router.replace("home");
-    } else if (isAuthenticated == false) {
-      // redirect to signIn
-      router.replace("signIn");
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   console.log("isSignedIn", isSignedIn);
+  //   if (!isLoaded) return;
+
+  //   const isTabsGroup = segments[0] === "(auth)";
+
+  //   if (isSignedIn && !isTabsGroup) {
+  //     router.replace("/home");
+  //   } else if (!isSignedIn) {
+  //     router.replace("/login");
+  //   }
+  // }, [isSignedIn]);
 
   return <Slot />;
 };
 
-const RootLayout = () => {
-  return (
-    <AuthContextProvider>
-      <MainLayout />
-    </AuthContextProvider>
-  );
+const RootLayoutNav = () => {
+  return <InitialLayout />;
 };
 
-export default RootLayout;
+export default RootLayoutNav;

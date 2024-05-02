@@ -5,8 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
   Pressable,
-  StyleSheet,
   Alert,
+  StyleSheet,
+  Button,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import {
@@ -15,39 +16,83 @@ import {
 } from "react-native-responsive-screen";
 import { StatusBar } from "expo-status-bar";
 import { MaterialIcons, Octicons } from "@expo/vector-icons";
-import Loading from "../components/Loading";
+import { Stack, useRouter } from "expo-router";
+import Loading from "../../components/Loading";
 import LottieView from "lottie-react-native";
-import { useRouter } from "expo-router";
-import { useAuth } from "../context/useContext";
+// import { useSignUp } from "@clerk/clerk-expo";
+import Spinner from "react-native-loading-spinner-overlay";
 
 export default function SignUp() {
   const router = useRouter();
-  const { register } = useAuth();
+  // const { isLoaded, signUp, setActive } = useSignUp();
+
+  // const nameRef = useRef("");
+  // const emailRef = useRef("");
+  // const passwordRef = useRef("");
+  // const [pendingVerification, setPendingVerification] = useState(false);
+  // const [code, setCode] = useState("");
+  // const [loading, setLoading] = useState(false);
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [pendingVerification, setPendingVerification] = useState(false);
+  const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const userNameRef = useRef("");
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
+  // const see = () => {
+  //   if (!emailRef.current || !passwordRef.current) {
+  //     Alert.alert("Sign In", "Please fill all the fields");
+  //   }
+  //   console.log(emailRef, passwordRef);
+  // };
 
-  const handleSignUp = async () => {
-    if (!emailRef.current || !passwordRef.current) {
-      Alert.alert("Signin", "Please fill all the field");
-      return;
-    }
-    setLoading(true);
+  // Create the user and send the verification email
+  // const onSignUpPress = async () => {
+  //   if (!isLoaded) {
+  //     return;
+  //   }
+  //   setLoading(true);
 
-    let response = await register(
-      emailRef.current,
-      passwordRef.current,
-      userNameRef.current
-    );
-    setLoading(false);
+  //   try {
+  //     // Create the user on Clerk
+  //     await signUp.create({
+  //       emailAddress,
+  //       password,
+  //     });
 
-    // console.log("got result: ", response);
-    if (!response.success) {
-      Alert.alert("Signup", response.msg);
-    }
-  };
+  //     // Send verification Email
+  //     await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+
+  //     // change the UI to verify the email address
+  //     setPendingVerification(true);
+  //   } catch (err) {
+  //     alert(err.errors[0].message);
+  //     console.error(JSON.stringify(err, null, 2));
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // Verify the email address
+  // const onPressVerify = async () => {
+  //   if (!isLoaded) {
+  //     return;
+  //   }
+  //   setLoading(true);
+
+  //   try {
+  //     const completeSignUp = await signUp.attemptEmailAddressVerification({
+  //       code,
+  //     });
+
+  //     await setActive({ session: completeSignUp.createdSessionId });
+  //   } catch (err) {
+  //     alert(err.errors[0].message);
+  //     console.error(JSON.stringify(err, null, 2));
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   return (
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
@@ -59,7 +104,7 @@ export default function SignUp() {
           <Image
             style={{ height: hp(25) }}
             resizeMode="contain"
-            source={require("../assets/Images/register.png")}
+            source={require("../../assets/Images/register.png")}
           />
         </View>
 
@@ -85,7 +130,7 @@ export default function SignUp() {
                 color="white"
               />
               <TextInput
-                onChangeText={(value) => (userNameRef.current = value)}
+                onChangeText={(value) => (nameRef.current = value)}
                 style={{ fontSize: hp(2) }}
                 className="flex-1 font-semibold text-white mx-2"
                 placeholder="Full name"
@@ -127,7 +172,7 @@ export default function SignUp() {
                 </View>
               ) : (
                 <TouchableOpacity
-                  onPress={handleSignUp}
+                  onPress={see}
                   style={{ height: hp(6.5) }}
                   className="bg-neutral-700 justify-center items-center border border-white rounded-xl"
                 >
@@ -148,7 +193,7 @@ export default function SignUp() {
               >
                 Have an account?{" "}
               </Text>
-              <Pressable onPress={() => router.push("/signIn")}>
+              <Pressable onPress={() => router.push("/login")}>
                 <Text
                   style={{ fontSize: hp(1.8) }}
                   className="font-bold text-neutral-800 underline"
@@ -177,7 +222,7 @@ export default function SignUp() {
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../assets/Images/google.json")}
+                  source={require("../../assets/Images/google.json")}
                   loop={false}
                   autoPlay
                 />
@@ -188,7 +233,7 @@ export default function SignUp() {
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../assets/Images/facebook.json")}
+                  source={require("../../assets/Images/facebook.json")}
                   loop={false}
                   autoPlay
                 />
@@ -199,7 +244,7 @@ export default function SignUp() {
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../assets/Images/phone.json")}
+                  source={require("../../assets/Images/phone.json")}
                   loop={false}
                   autoPlay
                 />

@@ -15,32 +15,46 @@ import {
 import { StatusBar } from "expo-status-bar";
 import { Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+// import * as WebBrowser from "expo-web-browser";
+import Loading from "../../components/Loading";
 import LottieView from "lottie-react-native";
-import Loading from "../components/Loading";
-import { useAuth } from "../context/useContext";
+// import { useWarmUpBrowser } from "../../hooks/useWarmUpBrowser";
+// import { useOAuth, useSignIn } from "@clerk/clerk-expo";
 
-export default function SignIn() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+// WebBrowser.maybeCompleteAuthSession();
 
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
+export default function LogIn() {
+  // login with google
 
-  const handleSignIn = async () => {
-    if (!emailRef.current || !passwordRef.current) {
-      Alert.alert("Signin", "Please fill all the field");
-      return;
-    }
+  // useWarmUpBrowser();
+  // const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+  // const googleSignIn = React.useCallback(async () => {
+  //   try {
+  //     const { createdSessionId, signIn, signUp, setActive } =
+  //       await startOAuthFlow();
 
-    setLoading(true);
-    const response = await login(emailRef.current, passwordRef.current);
-    setLoading(false);
-    // console.log("signin response: ", response);
-    if (!response.success) {
-      Alert.alert("Signin", response.msg);
-    }
-  };
+  //     if (createdSessionId) {
+  //       setActive({ session: createdSessionId });
+  //     } else {
+  //       // Use signIn or signUp for next steps such as MFA
+  //     }
+  //   } catch (err) {
+  //     console.error("OAuth error", err);
+  //   }
+  // }, []);
+
+  // const router = useRouter();
+  // const { signIn, setActive, isLoaded } = useSignIn();
+  // const emailRef = useRef("");
+  // const passwordRef = useRef("");
+  // const [loading, setLoading] = useState(false);
+
+  // const see = () => {
+  //   if (!emailRef.current || !passwordRef.current) {
+  //     Alert.alert("Sign In", "Please fill all the fields");
+  //   }
+  //   console.log(emailRef, passwordRef);
+  // };
 
   return (
     <View className="flex-1 bg-white">
@@ -53,7 +67,7 @@ export default function SignIn() {
           <Image
             style={{ height: hp(25) }}
             resizeMode="contain"
-            source={require("../assets/Images/login.png")}
+            source={require("../../assets/Images/login.png")}
           />
         </View>
 
@@ -112,7 +126,7 @@ export default function SignIn() {
                 </View>
               ) : (
                 <TouchableOpacity
-                  onPress={handleSignIn}
+                  onPress={see}
                   style={{ height: hp(6.5) }}
                   className="bg-neutral-700 justify-center items-center border border-white rounded-xl"
                 >
@@ -133,7 +147,7 @@ export default function SignIn() {
               >
                 Don't have an account?{" "}
               </Text>
-              <Pressable onPress={() => router.push("/signUp")}>
+              <Pressable onPress={() => router.push("/register")}>
                 <Text
                   style={{ fontSize: hp(1.8) }}
                   className="font-bold text-neutral-800 underline"
@@ -157,13 +171,13 @@ export default function SignIn() {
 
             <View className="flex-row items-center justify-evenly">
               <TouchableOpacity
-                onPress={console.log("GOOGLE??")}
+                onPress={googleSignIn}
                 style={{ aspectRatio: 1, height: hp(7) }}
                 className="bg-white border border-neutral-800 rounded-2xl flex-row"
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../assets/Images/google.json")}
+                  source={require("../../assets/Images/google.json")}
                   loop={false}
                   autoPlay
                 />
@@ -174,7 +188,7 @@ export default function SignIn() {
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../assets/Images/facebook.json")}
+                  source={require("../../assets/Images/facebook.json")}
                   loop={false}
                   autoPlay
                 />
@@ -185,7 +199,7 @@ export default function SignIn() {
               >
                 <LottieView
                   style={{ flex: 1 }}
-                  source={require("../assets/Images/phone.json")}
+                  source={require("../../assets/Images/phone.json")}
                   loop={false}
                   autoPlay
                 />

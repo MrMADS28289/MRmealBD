@@ -16,6 +16,8 @@ import WishList from "./screens/Wishlist";
 import Order from "./screens/Order";
 import Account from "./screens/Account";
 import Colors from "../constants/Colors";
+import MainHeader from "./MainHeader";
+import HomeHeader from "./HomeHeader";
 
 const TabArr = [
   {
@@ -142,6 +144,7 @@ const BottomTab = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: "red",
+        headerShown: false,
       }}
     >
       {TabArr.map((item, index) => {
@@ -151,6 +154,8 @@ const BottomTab = () => {
             name={item.route}
             component={item.component}
             options={{
+              headerShown: true,
+              header: () => <HomeHeader />,
               tabBarButton: (props) => <TabButton {...props} item={item} />,
             }}
           />
