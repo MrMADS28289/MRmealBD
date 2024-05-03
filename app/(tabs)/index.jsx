@@ -1,11 +1,14 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
-import BottomTab from "../../components/BottomTab";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import MainBottomTabBar from "../../components/BottomTabBar";
 
 export default function HomeSreen() {
   return (
-    <View className="flex-1">
-      <BottomTab />
-    </View>
+    <BottomSheetModalProvider>
+      <View className="flex-1">
+        <MainBottomTabBar />
+      </View>
+    </BottomSheetModalProvider>
   );
 }

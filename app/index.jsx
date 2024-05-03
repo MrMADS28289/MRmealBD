@@ -1,6 +1,12 @@
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function GetStart() {
@@ -14,7 +20,7 @@ export default function GetStart() {
   // }, [user]);
 
   return (
-    <View>
+    <SafeAreaView>
       <Image
         source={require("../assets/Images/delivery.jpg")}
         className="w-full h-[405px] object-cover mt-4"
@@ -53,6 +59,6 @@ export default function GetStart() {
           </TouchableOpacity>
         </Animated.View>
       </Animated.View>
-    </View>
+    </SafeAreaView>
   );
 }

@@ -5,13 +5,13 @@ import Colors from "../constants/Colors";
 import { Link } from "expo-router";
 
 const HomeHeader = () => {
-  const openModal = () => {
-    // bottomSheetRef.current?.present();
-    console.log("openModal");
-  };
+  // const openModal = () => {
+  //   // bottomSheetRef.current?.present();
+  //   console.log("openModal");
+  // };
 
   return (
-    <SafeAreaView className="flex-1 bg-yellow-400 pt-[60px]">
+    <SafeAreaView className="flex-1 bg-yellow-400 pt-[70px]">
       {/* <BottomSheet ref={bottomSheetRef} /> */}
 
       <View className="bg-yellow-400 h-[50px]">
@@ -20,7 +20,7 @@ const HomeHeader = () => {
             <Ionicons name="search" size={20} color="white" />
             <TextInput
               placeholderTextColor="#fff"
-              className="p-2"
+              className="p-2 text-white"
               placeholder="Searce your dishes"
             />
           </View>

@@ -3,7 +3,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  SafeAreaView,
   useColorScheme,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -16,43 +15,7 @@ import WishList from "./screens/Wishlist";
 import Order from "./screens/Order";
 import Account from "./screens/Account";
 import Colors from "../constants/Colors";
-import MainHeader from "./MainHeader";
 import HomeHeader from "./HomeHeader";
-
-const TabArr = [
-  {
-    route: "Home",
-    label: "Home",
-    size: 22,
-    icon: "home",
-    iconLibrary: FontAwesome,
-    component: Home,
-  },
-  {
-    route: "Wish List",
-    label: "Wish List",
-    size: 22,
-    icon: "heart",
-    iconLibrary: FontAwesome,
-    component: WishList,
-  },
-  {
-    route: "Order",
-    label: "Order",
-    size: 22,
-    icon: "shopping-bag",
-    iconLibrary: FontAwesome,
-    component: Order,
-  },
-  {
-    route: "Account",
-    label: "Account",
-    size: 22,
-    icon: "account-circle",
-    iconLibrary: MaterialIcons,
-    component: Account,
-  },
-];
 
 const Icon = ({ type, name, color, size = 24, style }) => {
   const fontSize = 24;
@@ -139,28 +102,87 @@ const TabButton = (props) => {
   );
 };
 
-const BottomTab = () => {
+const MainBottomTabBar = () => {
   return (
     <Tab.Navigator
+      safeAreaInsets={{ bottom: 10 }}
       screenOptions={{
-        tabBarActiveTintColor: "red",
         headerShown: false,
       }}
     >
-      {TabArr.map((item, index) => {
-        return (
-          <Tab.Screen
-            key={index}
-            name={item.route}
-            component={item.component}
-            options={{
-              headerShown: true,
-              header: () => <HomeHeader />,
-              tabBarButton: (props) => <TabButton {...props} item={item} />,
-            }}
-          />
-        );
-      })}
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          headerShown: true,
+          header: () => <HomeHeader />,
+          tabBarButton: (props) => (
+            <TabButton
+              {...props}
+              item={{
+                label: "Home",
+                size: 22,
+                icon: "home",
+                iconLibrary: FontAwesome,
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Wish List"
+        component={WishList}
+        options={{
+          headerShown: true,
+          tabBarButton: (props) => (
+            <TabButton
+              {...props}
+              item={{
+                label: "Wish List",
+                size: 22,
+                icon: "heart",
+                iconLibrary: FontAwesome,
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Order"
+        component={Order}
+        options={{
+          headerShown: true,
+          tabBarButton: (props) => (
+            <TabButton
+              {...props}
+              item={{
+                label: "Order",
+                size: 22,
+                icon: "shopping-bag",
+                iconLibrary: FontAwesome,
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={Account}
+        options={{
+          headerShown: true,
+          tabBarButton: (props) => (
+            <TabButton
+              {...props}
+              item={{
+                label: "Account",
+                size: 22,
+                icon: "account-circle",
+                iconLibrary: MaterialIcons,
+              }}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -203,4 +225,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BottomTab;
+export default MainBottomTabBar;
