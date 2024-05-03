@@ -1,26 +1,27 @@
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
-import React from 'react';
-import { categories } from '@/assets/data/home';
-import Colors from '@/constants/Colors';
+import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
+import React from "react";
+import { categories } from "@/assets/data/home";
+import Colors from "@/constants/Colors";
 
 const Categories = () => {
   return (
     <View>
-      <Text className='text-black text-xl mx-4 font-bold'>Categories</Text>
+      <Text className="text-black text-xl mx-4 font-bold">Top Seller</Text>
       <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{
-        padding: 15,
-        marginTop: 7
-      }}>
-      {categories.map((category, index) => (
-        <View style={styles.categoryCard} key={index}>
-          <Image source={category.img} />
-          <Text style={styles.categoryText}>{category.text}</Text>
-        </View>
-      ))}
-    </ScrollView>
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{
+          padding: 15,
+          marginTop: 7,
+        }}
+      >
+        {categories.map((category, index) => (
+          <View style={styles.categoryCard} key={index}>
+            <Image source={category.img} />
+            <Text style={styles.categoryText}>{category.text}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -40,10 +41,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   categoryText: {
-    color: '#fff',
+    color: "#fff",
     padding: 6,
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 

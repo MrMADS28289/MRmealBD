@@ -4,7 +4,7 @@ import React from "react";
 export default function Account() {
   return (
     <View>
-      <Text>Accoumt</Text>
+      <Text>{process.env.EXPO_PUBLIC_GOOGLE_API_KEY}</Text>
     </View>
   );
 }
