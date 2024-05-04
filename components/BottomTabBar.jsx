@@ -8,7 +8,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useTheme } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 import Home from "./screens/Home";
 import WishList from "./screens/Wishlist";
@@ -103,6 +103,8 @@ const TabButton = (props) => {
 };
 
 const MainBottomTabBar = () => {
+  const navigation = useNavigation();
+
   return (
     <Tab.Navigator
       safeAreaInsets={{ bottom: 10 }}
@@ -179,6 +181,7 @@ const MainBottomTabBar = () => {
                 icon: "account-circle",
                 iconLibrary: MaterialIcons,
               }}
+              // onPress={() => console.log("Account clicked")} // navigation.openDrawer()
             />
           ),
         }}
