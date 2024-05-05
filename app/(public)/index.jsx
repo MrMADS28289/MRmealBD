@@ -11,18 +11,11 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function GetStart() {
   const router = useRouter();
-  // const user = useState(true);
-
-  // useEffect(() => {
-  //   if (user) {
-  //     router.replace("(tabs)");
-  //   }
-  // }, [user]);
 
   return (
     <SafeAreaView>
       <Image
-        source={require("../assets/Images/delivery.jpg")}
+        source={require("../../assets/Images/delivery.jpg")}
         className="w-full h-[405px] object-cover mt-4"
       />
       <Animated.View

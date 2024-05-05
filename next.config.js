@@ -4,12 +4,7 @@ const { withExpo } = require("@expo/next-adapter");
 const nextConfig = withExpo({
   reactStrictMode: true,
   swcMinify: true,
-  transpilePackages: [
-    "react-native",
-    "expo",
-    "@clerk/nextjs",
-    "@expo/next-adapter",
-  ],
+  transpilePackages: ["react-native", "expo", "@expo/next-adapter"],
   experimental: {
     forceSwcTransforms: true,
   },

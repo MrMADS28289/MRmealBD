@@ -19,6 +19,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(undefined);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -26,9 +27,11 @@ export const AuthContextProvider = ({ children }) => {
         setIsAuthenticated(true);
         setUser(user);
         updateUserData(user.uid);
+        setLoading(false);
       } else {
         setIsAuthenticated(false);
         setUser(null);
+        setLoading(false);
       }
     });
     return unsub;
@@ -59,6 +62,7 @@ export const AuthContextProvider = ({ children }) => {
       return { success: false, msg: err.message };
     }
   };
+
   const logout = async () => {
     try {
       await signOut(auth);
@@ -67,6 +71,7 @@ export const AuthContextProvider = ({ children }) => {
       return { success: false, msg: err.message, error: err };
     }
   };
+
   const register = async (email, password, username) => {
     try {
       const response = await createUserWithEmailAndPassword(
@@ -91,7 +96,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, login, register, logout }}
+      value={{ user, isAuthenticated, login, register, logout, loading }}
     >
       {children}
     </AuthContext.Provider>

@@ -16,8 +16,17 @@ import {
   FontAwesome6,
 } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
+import { useRouter } from "expo-router";
+import { useAuth } from "../../context/useContext";
 
 export default function Account() {
+  // const router = useRouter();
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-yellow-300">
       <ScrollView className="flex-1">
@@ -98,7 +107,7 @@ export default function Account() {
             <Ionicons name="chevron-forward" size={22} color={Colors.white} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity onPress={handleLogout} style={styles.item}>
             <Ionicons name="exit-outline" size={24} color={Colors.white} />
             <Text className="text-white" style={{ flex: 1 }}>
               Logout

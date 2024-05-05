@@ -1,11 +1,17 @@
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
-import useBasketStore from '@/store/basketStore';
-import Colors from '@/constants/Colors';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import ConfettiCannon from 'react-native-confetti-cannon';
-import { Link } from 'expo-router';
-import SwipeableRow from '@/components/SwipeableRow';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState } from "react";
+import useBasketStore from "@/store/basketStore";
+import Colors from "@/constants/Colors";
+import { SafeAreaView } from "react-native-safe-area-context";
+import ConfettiCannon from "react-native-confetti-cannon";
+import { Link } from "expo-router";
+import SwipeableRow from "@/components/SwipeableRow";
 // import SwipeableRow from '@/Components/SwipeableRow';
 
 const Basket = () => {
@@ -24,11 +30,23 @@ const Basket = () => {
 
   return (
     <>
-      {order && <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} fallSpeed={2500} fadeOut={true} autoStart={true} />}
       {order && (
-        <View style={{ marginTop: '50%', padding: 20, alignItems: 'center' }}>
-          <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>Thank you for your order!</Text>
-          <Link href={'/'} asChild>
+        <ConfettiCannon
+          count={200}
+          origin={{ x: -10, y: 0 }}
+          fallSpeed={2500}
+          fadeOut={true}
+          autoStart={true}
+        />
+      )}
+      {order && (
+        <View style={{ marginTop: "50%", padding: 20, alignItems: "center" }}>
+          <Text
+            style={{ fontSize: 24, fontWeight: "bold", textAlign: "center" }}
+          >
+            Thank you for your order!
+          </Text>
+          <Link href={"/"} asChild>
             <TouchableOpacity style={styles.orderBtn}>
               <Text style={styles.footerText}>New order</Text>
             </TouchableOpacity>
@@ -40,19 +58,27 @@ const Basket = () => {
           <FlatList
             data={products}
             ListHeaderComponent={<Text style={styles.section}>Items</Text>}
-            ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: Colors.grey }} />}
+            ItemSeparatorComponent={() => (
+              <View style={{ height: 1, backgroundColor: Colors.grey }} />
+            )}
             renderItem={({ item }) => (
               <SwipeableRow onDelete={() => reduceProduct(item)}>
                 <View style={styles.row}>
-                  <Text style={{ color: Colors.primary, fontSize: 18 }}>{item.quantity}x</Text>
+                  <Text style={{ color: Colors.gold, fontSize: 18 }}>
+                    {item.quantity}x
+                  </Text>
                   <Text style={{ flex: 1, fontSize: 18 }}>{item.name}</Text>
-                  <Text style={{ fontSize: 18 }}>${item.price * item.quantity}</Text>
+                  <Text style={{ fontSize: 18 }}>
+                    ${item.price * item.quantity}
+                  </Text>
                 </View>
               </SwipeableRow>
             )}
             ListFooterComponent={
               <View>
-                <View style={{ height: 1, backgroundColor: Colors.grey }}></View>
+                <View
+                  style={{ height: 1, backgroundColor: Colors.grey }}
+                ></View>
                 <View style={styles.totalRow}>
                   <Text style={styles.total}>Subtotal</Text>
                   <Text style={{ fontSize: 18 }}>${total}</Text>
@@ -70,15 +96,23 @@ const Basket = () => {
 
                 <View style={styles.totalRow}>
                   <Text style={styles.total}>Order Total</Text>
-                  <Text style={{ fontSize: 18, fontWeight: 'bold' }}>${(total + FEES.service + FEES.delivery).toFixed(2)}</Text>
+                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                    ${(total + FEES.service + FEES.delivery).toFixed(2)}
+                  </Text>
                 </View>
               </View>
             }
           />
 
           <View style={styles.footer}>
-            <SafeAreaView edges={['bottom']} style={{ backgroundColor: '#fff' }}>
-              <TouchableOpacity style={styles.fullButton} onPress={startCheckout}>
+            <SafeAreaView
+              edges={["bottom"]}
+              style={{ backgroundColor: "#fff" }}
+            >
+              <TouchableOpacity
+                style={styles.fullButton}
+                onPress={startCheckout}
+              >
                 <Text style={styles.footerText}>Order now</Text>
               </TouchableOpacity>
             </SafeAreaView>
@@ -91,63 +125,63 @@ const Basket = () => {
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
+    flexDirection: "row",
+    backgroundColor: "#fff",
     padding: 10,
     gap: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   section: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     margin: 16,
   },
   totalRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   total: {
     fontSize: 18,
     color: Colors.medium,
   },
   footer: {
-    position: 'absolute',
-    backgroundColor: '#fff',
+    position: "absolute",
+    backgroundColor: "#fff",
     bottom: 0,
     left: 0,
-    width: '100%',
+    width: "100%",
     padding: 10,
     elevation: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: -10 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
     paddingTop: 20,
   },
   fullButton: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.gold,
     paddingHorizontal: 16,
     borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     flex: 1,
     height: 50,
   },
   footerText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
     fontSize: 16,
   },
   orderBtn: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.gold,
     paddingHorizontal: 16,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
     width: 250,
     height: 50,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginTop: 20,
   },
 });

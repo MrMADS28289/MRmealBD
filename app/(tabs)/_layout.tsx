@@ -86,7 +86,7 @@ export default function RootLayoutNav() {
               headerLeft: () => (
                 <TouchableOpacity
                   style={{
-                    backgroundColor: "#fff",
+                    backgroundColor: Colors.gold,
                     borderRadius: 20,
                     padding: 6,
                   }}
@@ -97,7 +97,7 @@ export default function RootLayoutNav() {
                   <Ionicons
                     name="close-outline"
                     size={28}
-                    color={Colors.primary}
+                    color={Colors.white}
                   />
                 </TouchableOpacity>
               ),
@@ -107,17 +107,16 @@ export default function RootLayoutNav() {
             name="basket"
             options={{
               headerTitle: "Basket",
+              headerTitleStyle: {
+                color: Colors.gold,
+              },
               headerLeft: () => (
                 <TouchableOpacity
                   onPress={() => {
                     navigation.goBack();
                   }}
                 >
-                  <Ionicons
-                    name="arrow-back"
-                    size={28}
-                    color={Colors.primary}
-                  />
+                  <Ionicons name="arrow-back" size={28} color={Colors.gold} />
                 </TouchableOpacity>
               ),
             }}
