@@ -12,5 +12,5 @@
     "**/*.tsx",
     "expo/types/**/*.ts",
     "components/ParallaxScrollView.jsx"
-, "components/CustomHeader.sx"  ]
+, "components/CustomHeader.sx", "components/BottomSheet.jsx"  ]
 }

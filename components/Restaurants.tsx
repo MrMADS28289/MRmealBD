@@ -1,8 +1,15 @@
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { restaurants } from '@/assets/data/home';
-import { Link } from 'expo-router';
-import Colors from '../constants/Colors';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import React from "react";
+import { restaurants } from "@/assets/data/home";
+import { Link } from "expo-router";
+import Colors from "../constants/Colors";
 
 const Restaurants = () => {
   return (
@@ -11,9 +18,10 @@ const Restaurants = () => {
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
         padding: 15,
-      }}>
+      }}
+    >
       {restaurants.map((restaurant, index) => (
-        <Link href={'/details'} key={index} asChild>
+        <Link href={"/details"} key={index} asChild>
           <TouchableOpacity>
             <View style={styles.categoryCard}>
               <Image source={restaurant.img} style={styles.image} />
@@ -22,7 +30,9 @@ const Restaurants = () => {
                 <Text style={{ color: Colors.white }}>
                   {restaurant.rating} {restaurant.ratings}
                 </Text>
-                <Text style={{ color: Colors.white }}>{restaurant.distance}</Text>
+                <Text style={{ color: Colors.white }}>
+                  {restaurant.distance}
+                </Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -35,10 +45,10 @@ const styles = StyleSheet.create({
   categoryCard: {
     width: 300,
     height: 250,
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.secondary,
     marginEnd: 10,
     elevation: 100,
-    shadowColor: Colors.gold,
+    shadowColor: Colors.secondary,
     shadowOffset: {
       width: 0,
       height: 10,
@@ -50,7 +60,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     fontSize: 14,
     color: Colors.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   image: {
     flex: 5,

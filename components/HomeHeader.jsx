@@ -11,22 +11,25 @@ const HomeHeader = () => {
   // };
 
   return (
-    <SafeAreaView className="flex-1 bg-yellow-400 pt-[70px]">
+    <SafeAreaView
+      style={{ backgroundColor: Colors.white }}
+      className="flex-1 pt-[70px]"
+    >
       {/* <BottomSheet ref={bottomSheetRef} /> */}
 
-      <View className="bg-yellow-400 h-[50px]">
+      <View style={{ backgroundColor: Colors.white }} className="h-[50px]">
         <View className="flex-row justify-between px-4 items-center">
-          <View className="flex-row items-center bg-yellow-300 border-2 border-white h-[40px] w-[250px] rounded-full px-3">
-            <Ionicons name="search" size={20} color="white" />
+          <View className="flex-row items-center bg-slate-100 border-2 border-gray-300 h-[40px] w-[250px] rounded-full px-3">
+            <Ionicons name="search" size={20} color="black" />
             <TextInput
-              placeholderTextColor="#fff"
-              className="p-2 text-white"
+              placeholderTextColor="black"
+              className="p-2 text-black"
               placeholder="Searce your dishes"
             />
           </View>
-          <Link href={"/(modal)/filter"} asChild>
+          <Link href={"/(modal)/settings"} asChild>
             <TouchableOpacity>
-              <Ionicons name="options-outline" size={24} color={Colors.white} />
+              <Ionicons name="options-outline" size={24} color={Colors.black} />
             </TouchableOpacity>
           </Link>
         </View>

@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
   categoryCard: {
     width: 100,
     height: 100,
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.secondary,
     marginEnd: 10,
     elevation: 100,
-    shadowColor: Colors.gold,
+    shadowColor: Colors.secondary,
     shadowOffset: {
       width: 0,
       height: 1,

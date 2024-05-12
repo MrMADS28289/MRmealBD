@@ -483,6 +483,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				CODE_SIGN_ENTITLEMENTS = RnUiApp/RnUiApp.entitlements;
 			};
 			name = Debug;
 		};
@@ -508,6 +509,7 @@
 				PRODUCT_NAME = RnUiApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				CODE_SIGN_ENTITLEMENTS = RnUiApp/RnUiApp.entitlements;
 			};
 			name = Release;
 		};

@@ -28,91 +28,91 @@ export default function Account() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-yellow-300">
+    <SafeAreaView className="flex-1">
       <ScrollView className="flex-1">
-        <View className="flex-1 items-center mt-8 pb-4 border-b-2 border-white">
+        <View className="flex-1 items-center mt-8 pb-4 border-b-2 border-black">
           <View>
-            <View className="border-2 border-white rounded-full">
+            <View className="border-2 border-black rounded-full">
               <Image
                 className="h-[90px] w-[90px] rounded-full"
                 source={require("../../assets/Images/masum.jpg")}
               />
             </View>
-            <TouchableOpacity className="absolute items-center justify-center bottom-0 right-0 border-2 rounded-full bg-yellow-400 w-[30px] h-[30px] border-white">
-              <Entypo name="camera" size={20} color="white" />
+            <TouchableOpacity className="absolute items-center justify-center bottom-0 right-0 border-2 rounded-full bg-white w-[30px] h-[30px] border-black">
+              <Entypo name="camera" size={20} color="black" />
             </TouchableOpacity>
           </View>
-          <Text className="mt-2 text-xl font-bold text-white">
+          <Text className="mt-2 text-xl font-bold text-black">
             Masum Abduss Sobhan
           </Text>
         </View>
         <View className="mt-6 mx-8">
           <TouchableOpacity>
             <View className="absolute top-0 right-0">
-              <FontAwesome name="edit" size={20} color="white" />
+              <FontAwesome name="edit" size={20} color="black" />
             </View>
           </TouchableOpacity>
-          <Text className="text-[14px] font-bold text-white">
+          <Text className="text-[14px] font-bold text-black">
             Phone: 01734-326573
           </Text>
-          <Text className="text-[14px] font-bold text-white">
+          <Text className="text-[14px] font-bold text-black">
             Email: abduss.sobhan28@gmail.com
           </Text>
-          <Text className="text-[14px] font-bold text-white">
+          <Text className="text-[14px] font-bold text-black">
             Address: Horinakundu, Jhenaidah
           </Text>
         </View>
         <View style={styles.itemContainer}>
           <TouchableOpacity style={styles.item}>
-            <AntDesign name="calendar" size={20} color="white" />
-            <Text className="text-white" style={{ flex: 1 }}>
+            <AntDesign name="calendar" size={20} color="black" />
+            <Text className="text-black" style={{ flex: 1 }}>
               My Subscription
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.white} />
+            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.item}>
-            <Ionicons name="wallet-outline" size={22} color={Colors.white} />
-            <Text className="text-white" style={{ flex: 1 }}>
+            <Ionicons name="wallet-outline" size={22} color={Colors.black} />
+            <Text className="text-black" style={{ flex: 1 }}>
               Wallet
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.white} />
+            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.item}>
-            <Ionicons name="people-outline" size={22} color={Colors.white} />
-            <Text className="text-white" style={{ flex: 1 }}>
+            <Ionicons name="people-outline" size={22} color={Colors.black} />
+            <Text className="text-black" style={{ flex: 1 }}>
               Reffer and Earn
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.white} />
+            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.item}>
             <Ionicons
               name="help-circle-outline"
               size={24}
-              color={Colors.white}
+              color={Colors.black}
             />
-            <Text className="text-white" style={{ flex: 1 }}>
+            <Text className="text-black" style={{ flex: 1 }}>
               Help and Support
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.white} />
+            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.item}>
-            <AntDesign name="exclamationcircleo" size={20} color="white" />
-            <Text className="text-white" style={{ flex: 1 }}>
+            <AntDesign name="exclamationcircleo" size={20} color="black" />
+            <Text className="text-black" style={{ flex: 1 }}>
               FAQ's
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.white} />
+            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={handleLogout} style={styles.item}>
-            <Ionicons name="exit-outline" size={24} color={Colors.white} />
-            <Text className="text-white" style={{ flex: 1 }}>
+            <Ionicons name="exit-outline" size={24} color={Colors.black} />
+            <Text className="text-black" style={{ flex: 1 }}>
               Logout
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.white} />
+            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -143,10 +143,10 @@ const styles = StyleSheet.create({
     },
   },
   fullButton: {
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.secondary,
     padding: 16,
     alignItems: "center",
-    borderRadius: 8,
+    // borderRadius: 15,
     flex: 1,
     height: 56,
   },
@@ -157,14 +157,14 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     marginTop: 25,
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.white,
     // padding: 8,
     paddingHorizontal: 20,
     borderRadius: 8,
     marginBottom: 32,
   },
   header: {
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.secondary,
     fontSize: 16,
     fontWeight: "bold",
     padding: 15,
@@ -175,9 +175,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     gap: 20,
     alignItems: "center",
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.white,
     paddingVertical: 10,
-    borderColor: Colors.white,
+    borderColor: Colors.black,
     borderBottomWidth: 1,
   },
   itemText: {
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 15,
     paddingVertical: 5,
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.secondary,
   },
   btnContainer: {
     flexDirection: "row",
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   outlineButton: {
-    borderColor: Colors.gold,
+    borderColor: Colors.secondary,
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     height: 56,
   },
   outlineButtonText: {
-    color: Colors.gold,
+    color: Colors.secondary,
     fontWeight: "bold",
     fontSize: 16,
   },

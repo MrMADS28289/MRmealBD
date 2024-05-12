@@ -59,7 +59,7 @@ const TabButton = (props) => {
   const isDarkMode = useColorScheme() === "dark";
 
   const { colors } = useTheme();
-  const color = Colors.gold;
+  const color = Colors.secondary;
   const bgColor = Colors.white;
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const TabButton = (props) => {
           <Icon
             type={item.iconLibrary}
             name={item.icon}
-            color={focused ? Colors.white : Colors.gold}
+            color={focused ? Colors.white : Colors.secondary}
           />
         </View>
         <Animatable.Text ref={textRef} style={[styles.text, { color }]}>
@@ -117,7 +117,7 @@ const MainBottomTabBar = () => {
         component={Home}
         options={{
           headerShown: true,
-          header: () => <HomeHeader />,
+          // header: () => <HomeHeader />,
           tabBarButton: (props) => (
             <TabButton
               {...props}
@@ -217,13 +217,13 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: Colors.gold,
+    backgroundColor: Colors.secondary,
     borderRadius: 25,
   },
   text: {
     fontSize: 12,
     textAlign: "center",
-    color: Colors.gold,
+    color: Colors.secondary,
     fontWeight: "500",
   },
 });

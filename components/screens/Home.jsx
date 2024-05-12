@@ -19,12 +19,6 @@ const Home = () => {
         <Restaurants />
         <Text className="text-xl font-bold mx-4 my-2 pt-2">Best Offers!</Text>
         <Restaurants />
-        <View className="m-3">
-          <Image
-            className="h-[160px] w-[300px]"
-            source={require("../../assets/logo/LogoPink.png")}
-          />
-        </View>
         <Text className="mt-40" />
       </ScrollView>
     </SafeAreaView>

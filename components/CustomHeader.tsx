@@ -14,6 +14,7 @@ import Colors from "../constants/Colors";
 import { Link } from "expo-router";
 import BottomSheet from "./BottomSheet";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useColorScheme } from "nativewind";
 
 const CustomHeader = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -22,48 +23,57 @@ const CustomHeader = () => {
     bottomSheetRef.current?.present();
   };
 
+  const { colorScheme } = useColorScheme();
+
   return (
-    <SafeAreaView className="flex-1 bg-yellow-400 pt-6">
+    <SafeAreaView
+      style={{ backgroundColor: Colors.white }}
+      className="flex-1 pt-6"
+    >
       <BottomSheet ref={bottomSheetRef} />
 
-      <View className="bg-yellow-400 h-[60px] flex-row items-center justify-between px-4">
+      <View
+        style={{ backgroundColor: Colors.white }}
+        className="h-[60px] flex-row items-center justify-between px-4"
+      >
         <View className="flex-row h-[45px]">
-          <View className="justify-center items-center mr-1">
+          <View className="justify-center items-center mr-2 h-[45px] w-[45px] overflow-hidden rounded-full">
             <Image
-              className="h-[29px] w-[55px] "
-              source={require("../assets/logo/LogoWhite.png")}
+              className="h-[60px] w-[60px] "
+              source={require("../assets/logo/logoCircle.png")}
             />
           </View>
           <View>
-            <Text className="text-white text-[15px] font-bold">MRmealBD</Text>
-            <TouchableOpacity style={styles.titleContainer} onPress={openModal}>
-              <View className="flex-row items-center gap-1">
-                <FontAwesome6 name="location-dot" size={12} color="white" />
-                <Text className="text-white text-[13px] font-bold">
-                  Moimonsingo
-                </Text>
-                <View className="pt-[2px] font-bold">
-                  <Ionicons
-                    name="chevron-down"
-                    size={15}
-                    color={Colors.white}
-                  />
+            <Text className="text-[13px] font-bold">Delivery to</Text>
+            <Link href={"/(modal)/location-search"} asChild>
+              <TouchableOpacity style={styles.titleContainer}>
+                <View className="flex-row items-center gap-1">
+                  <FontAwesome6 name="location-dot" size={12} color="black" />
+                  <Text className="text-[13px] font-bold">Moimonsingo</Text>
+                  <View className="pt-[2px] font-bold">
+                    <Ionicons
+                      name="chevron-down"
+                      size={15}
+                      color={Colors.black}
+                    />
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </Link>
           </View>
         </View>
 
         <View className="flex-row items-center">
           <TouchableOpacity className="mr-2">
-            <Text className="absolute top-[-3px] right-0 text-[10px] text-white font-bold bg-red-500 h-[7px] w-[7px] rounded-full items-center" />
-            <Ionicons name="notifications-outline" size={22} color="white" />
+            <Text className="absolute top-[-3px] right-0 text-[10px] font-bold bg-red-500 h-[7px] w-[7px] rounded-full items-center" />
+            <Ionicons name="notifications-outline" size={22} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity className="bg-yello-300 rounded-full">
+
+          <TouchableOpacity onPress={openModal}>
             <MaterialCommunityIcons
               name="dots-vertical"
               size={30}
-              color="white"
+              color="black"
             />
           </TouchableOpacity>
         </View>

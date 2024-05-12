@@ -53,6 +53,33 @@ export default function RootLayoutNav() {
             }}
           />
           <Stack.Screen
+            name="(modal)/settings"
+            options={{
+              presentation: "modal",
+              headerTitle: "Filter",
+              headerShadowVisible: false,
+              headerStyle: {
+                backgroundColor: Colors.gold,
+              },
+              headerTitleStyle: {
+                color: "white",
+              },
+              headerLeft: () => (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.goBack();
+                  }}
+                >
+                  <Ionicons
+                    name="close-outline"
+                    size={28}
+                    color={Colors.white}
+                  />
+                </TouchableOpacity>
+              ),
+            }}
+          />
+          <Stack.Screen
             name="(modal)/location-search"
             options={{
               headerStyle: { backgroundColor: Colors.gold },
