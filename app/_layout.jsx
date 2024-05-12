@@ -1,9 +1,10 @@
 import { Slot, Stack, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
 import { AuthContextProvider, useAuth } from "../context/useContext";
-import Loading from "../components/Loading";
 
 const InitialLayout = () => {
+  // fireBase Auth
+
   const { isAuthenticated, loading } = useAuth();
   const segments = useSegments();
   const router = useRouter();

@@ -6,12 +6,12 @@ import { getFirestore, collection } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAqNt6eptWtE59IpLX73Qs5sLP3OJpgbAw",
-  authDomain: "mrmealbd-5b438.firebaseapp.com",
-  projectId: "mrmealbd-5b438",
-  storageBucket: "mrmealbd-5b438.appspot.com",
-  messagingSenderId: "64572416181",
-  appId: "1:64572416181:web:a05d7c16d2a88094cd1efc",
+  apiKey: process.env.EXPO_PUBLIC_LOCAL_ENV_apiKey,
+  authDomain: process.env.EXPO_PUBLIC_LOCAL_ENV_authDomain,
+  projectId: process.env.EXPO_PUBLIC_LOCAL_ENV_projectId,
+  storageBucket: process.env.EXPO_PUBLIC_LOCAL_ENV_storageBucket,
+  messagingSenderId: process.env.EXPO_PUBLIC_LOCAL_ENV_messagingSenderId,
+  appId: process.env.EXPO_PUBLIC_LOCAL_ENV_appId,
 };
 
 // Initialize Firebase
@@ -24,4 +24,3 @@ export const auth = initializeAuth(app, {
 export const db = getFirestore(app);
 
 export const usersRef = collection(db, "users");
-export const roomRef = collection(db, "rooms");

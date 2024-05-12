@@ -1,12 +1,19 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
-import React, { useRef } from 'react';
-import { FontAwesome6, Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Colors from '../constants/Colors';
-import { Link } from 'expo-router';
-import BottomSheet from './BottomSheet';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
-
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  Image,
+} from "react-native";
+import React, { useRef } from "react";
+import { FontAwesome6, Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Colors from "../constants/Colors";
+import { Link } from "expo-router";
+import BottomSheet from "./BottomSheet";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const CustomHeader = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -17,67 +24,66 @@ const CustomHeader = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-yellow-400 pt-6">
-    <BottomSheet ref={bottomSheetRef} />
+      <BottomSheet ref={bottomSheetRef} />
 
-    <View className="bg-yellow-400 h-[60px] flex-row items-center justify-between px-4">
-      <View className="flex-row gap-2">
-        <View className="h-[42px] w-[42px] border border-white rounded-full items-center justify-center">
-          <Image
-            className="h-[40px] w-[40px] rounded-full"
-            source={require("../assets/Images/mrmeal.jpeg")}
-          />
-        </View>
-        <View>
-          <Text className="text-white text-base font-bold">MRmealBD</Text>
-          <TouchableOpacity style={styles.titleContainer} onPress={openModal}>
-            <View className="flex-row items-center gap-1">
-              <FontAwesome6 name="location-dot" size={15} color="white" />
-              <Text className="text-white text-md font-bold">
-                Moimonsingo
-              </Text>
-              <View className="pt-[2px] font-bold">
-                <Ionicons
-                  name="chevron-down"
-                  size={18}
-                  color={Colors.white}
-                />
+      <View className="bg-yellow-400 h-[60px] flex-row items-center justify-between px-4">
+        <View className="flex-row h-[45px]">
+          <View className="justify-center items-center mr-1">
+            <Image
+              className="h-[29px] w-[55px] "
+              source={require("../assets/logo/LogoWhite.png")}
+            />
+          </View>
+          <View>
+            <Text className="text-white text-[15px] font-bold">MRmealBD</Text>
+            <TouchableOpacity style={styles.titleContainer} onPress={openModal}>
+              <View className="flex-row items-center gap-1">
+                <FontAwesome6 name="location-dot" size={12} color="white" />
+                <Text className="text-white text-[13px] font-bold">
+                  Moimonsingo
+                </Text>
+                <View className="pt-[2px] font-bold">
+                  <Ionicons
+                    name="chevron-down"
+                    size={15}
+                    color={Colors.white}
+                  />
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View className="flex-row items-center">
+          <TouchableOpacity className="mr-2">
+            <Text className="absolute top-[-3px] right-0 text-[10px] text-white font-bold bg-red-500 h-[7px] w-[7px] rounded-full items-center" />
+            <Ionicons name="notifications-outline" size={22} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity className="bg-yello-300 rounded-full">
+            <MaterialCommunityIcons
+              name="dots-vertical"
+              size={30}
+              color="white"
+            />
           </TouchableOpacity>
         </View>
       </View>
-
-      <View className='flex-row items-center'>
-        <TouchableOpacity className='mr-2'>
-          <Text className='absolute top-[-3px] right-0 text-[10px] text-white font-bold bg-red-500 h-[7px] w-[7px] rounded-full items-center'/>
-          <Ionicons name="notifications-outline" size={22} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-yello-300 rounded-full">
-        
-          <MaterialCommunityIcons
-          name="dots-vertical"
-          size={30}
-          color="white"
-          />
-        </TouchableOpacity>
-     </View>
-    </View>
-  </SafeAreaView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   container: {
     height: 60,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
+    backgroundColor: "#fff",
+    flexDirection: "row",
     gap: 20,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 20,
   },
   bike: {
@@ -92,12 +98,12 @@ const styles = StyleSheet.create({
     color: Colors.medium,
   },
   locationName: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   subtitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   profileButton: {
     backgroundColor: Colors.lightGrey,
@@ -106,21 +112,21 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     height: 60,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   searchSection: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 10,
     flex: 1,
     paddingHorizontal: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   searchField: {
     flex: 1,
     backgroundColor: Colors.lightGrey,
     borderRadius: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   input: {
     padding: 10,

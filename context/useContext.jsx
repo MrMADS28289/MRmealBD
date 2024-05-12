@@ -3,6 +3,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  signInWithCredential,
 } from "firebase/auth";
 import {
   Children,
@@ -13,8 +15,53 @@ import {
 } from "react";
 import { auth, db } from "../firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+// import * as Google from "expo-google-auth-session";
+// import * as Google from "expo-auth-session/providers/google";
 
 export const AuthContext = createContext();
+// Initialize GoogleAuthProvider instance
+const googleProvider = new GoogleAuthProvider();
+
+const signInWithGoogle = async () => {
+  try {
+    // Start Google OAuth flow
+    const { type, accessToken, idToken } = await Google.logInAsync({
+      androidClientId: "YOUR_ANDROID_CLIENT_ID.apps.googleusercontent.com",
+      iosClientId: "YOUR_IOS_CLIENT_ID.apps.googleusercontent.com",
+      scopes: ["profile", "email"],
+    });
+
+    if (type === "success") {
+      // Obtain Firebase credential from Google OAuth tokens
+      const credential = googleProvider.credential(idToken, accessToken);
+
+      // Sign in with Firebase using the obtained credential
+      const result = await signInWithCredential(auth, credential);
+
+      // Handle successful Google sign-in
+      const { user } = result;
+      // Check if the user is new and add them to the database
+      if (user && result.additionalUserInfo.isNewUser) {
+        await setDoc(doc(db, "users", user.uid), {
+          // Set user data in the database
+          username: user.displayName || "",
+          profileUrl: user.photoURL || "",
+          userId: user.uid,
+        });
+      }
+      // Return any additional data you may need
+      return { success: true, user: result.user };
+    } else {
+      // Handle Google sign-in cancellation or failure
+      console.log("Google sign-in cancelled or failed.");
+      return { success: false };
+    }
+  } catch (error) {
+    // Handle Google sign-in error
+    console.error("Google sign-in error:", error);
+    return { success: false, error: error.message };
+  }
+};
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -96,7 +143,15 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, login, register, logout, loading }}
+      value={{
+        user,
+        isAuthenticated,
+        login,
+        register,
+        logout,
+        signInWithGoogle,
+        loading,
+      }}
     >
       {children}
     </AuthContext.Provider>

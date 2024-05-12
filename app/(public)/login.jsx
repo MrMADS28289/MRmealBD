@@ -17,7 +17,7 @@ import { Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Loading from "../../components/Loading";
 import LottieView from "lottie-react-native";
-import { useAuth } from "../../context/useContext";
+import { signInWithGoogle, useAuth } from "../../context/useContext";
 import CustomKeyboardView from "../../components/CustomKeyboardView";
 
 export default function LogIn() {
@@ -26,6 +26,7 @@ export default function LogIn() {
   const { login } = useAuth();
   const emailRef = useRef("");
   const passwordRef = useRef("");
+  // google authentication
 
   const handleLogin = async () => {
     if (!emailRef.current || !passwordRef.current) {
@@ -157,7 +158,7 @@ export default function LogIn() {
 
               <View className="flex-row items-center justify-evenly">
                 <TouchableOpacity
-                  onPress={() => console.log("google sign in")}
+                  onPress={console.log("google signin")}
                   style={{ aspectRatio: 1, height: hp(7) }}
                   className="bg-white border border-neutral-800 rounded-2xl flex-row"
                 >
