@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Order() {
   return (
-    <View>
+    <View className="flex-1 dark:bg-neutral-900">
       <Text>Orders</Text>
     </View>
   );

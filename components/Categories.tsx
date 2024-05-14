@@ -6,7 +6,9 @@ import Colors from "@/constants/Colors";
 const Categories = () => {
   return (
     <View>
-      <Text className="text-black text-xl mx-4 font-bold">Top Seller</Text>
+      <Text className="text-black text-xl mx-4 font-bold dark:text-white">
+        Top Seller
+      </Text>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

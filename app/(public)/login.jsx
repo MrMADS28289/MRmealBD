@@ -45,7 +45,6 @@ export default function LogIn() {
   return (
     <CustomKeyboardView>
       <View className="flex-1 bg-white">
-        <StatusBar style="dark" />
         <View className="flex-1">
           <View
             style={{ paddingTop: hp(4), paddingHorizontal: wp(5) }}

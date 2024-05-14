@@ -26,16 +26,10 @@ const CustomHeader = () => {
   const { colorScheme } = useColorScheme();
 
   return (
-    <SafeAreaView
-      style={{ backgroundColor: Colors.white }}
-      className="flex-1 pt-6"
-    >
+    <SafeAreaView className="flex-1 bg-white dark:bg-black pt-6">
       <BottomSheet ref={bottomSheetRef} />
 
-      <View
-        style={{ backgroundColor: Colors.white }}
-        className="h-[60px] flex-row items-center justify-between px-4"
-      >
+      <View className="bg-white dark:bg-black h-[60px] flex-row items-center justify-between px-4">
         <View className="flex-row h-[45px]">
           <View className="justify-center items-center mr-2 h-[45px] w-[45px] overflow-hidden rounded-full">
             <Image
@@ -44,17 +38,27 @@ const CustomHeader = () => {
             />
           </View>
           <View>
-            <Text className="text-[13px] font-bold">Delivery to</Text>
+            <Text className="text-[13px] font-bold text-black dark:text-white">
+              Delivery to
+            </Text>
             <Link href={"/(modal)/location-search"} asChild>
               <TouchableOpacity style={styles.titleContainer}>
                 <View className="flex-row items-center gap-1">
-                  <FontAwesome6 name="location-dot" size={12} color="black" />
-                  <Text className="text-[13px] font-bold">Moimonsingo</Text>
+                  <FontAwesome6
+                    name="location-dot"
+                    size={12}
+                    color={colorScheme == "dark" ? Colors.white : Colors.black}
+                  />
+                  <Text className="text-[13px] font-bold text-black dark:text-white">
+                    Moimonsingo
+                  </Text>
                   <View className="pt-[2px] font-bold">
                     <Ionicons
                       name="chevron-down"
                       size={15}
-                      color={Colors.black}
+                      color={
+                        colorScheme == "dark" ? Colors.white : Colors.black
+                      }
                     />
                   </View>
                 </View>
@@ -66,14 +70,18 @@ const CustomHeader = () => {
         <View className="flex-row items-center">
           <TouchableOpacity className="mr-2">
             <Text className="absolute top-[-3px] right-0 text-[10px] font-bold bg-red-500 h-[7px] w-[7px] rounded-full items-center" />
-            <Ionicons name="notifications-outline" size={22} color="black" />
+            <Ionicons
+              name="notifications-outline"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={openModal}>
             <MaterialCommunityIcons
               name="dots-vertical"
               size={30}
-              color="black"
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
             />
           </TouchableOpacity>
         </View>

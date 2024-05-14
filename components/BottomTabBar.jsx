@@ -1,10 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  useColorScheme,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -16,6 +11,7 @@ import Order from "./screens/Order";
 import Account from "./screens/Account";
 import Colors from "../constants/Colors";
 import HomeHeader from "./HomeHeader";
+import { useColorScheme } from "nativewind";
 
 const Icon = ({ type, name, color, size = 24, style }) => {
   const fontSize = 24;
@@ -56,11 +52,11 @@ const TabButton = (props) => {
   const viewRef = useRef(null);
   const circleRef = useRef(null);
   const textRef = useRef(null);
-  const isDarkMode = useColorScheme() === "dark";
+  const { colorScheme } = useColorScheme();
 
   const { colors } = useTheme();
-  const color = Colors.secondary;
-  const bgColor = Colors.white;
+  const color = colorScheme == "dark" ? "white" : "black";
+  const bgColor = colorScheme == "dark" ? "black" : "white";
 
   useEffect(() => {
     if (focused) {
@@ -104,12 +100,15 @@ const TabButton = (props) => {
 
 const MainBottomTabBar = () => {
   const navigation = useNavigation();
-
+  const { colorScheme } = useColorScheme();
   return (
     <Tab.Navigator
       safeAreaInsets={{ bottom: 10 }}
       screenOptions={{
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: colorScheme == "dark" ? "black" : "white",
+        },
       }}
     >
       <Tab.Screen
