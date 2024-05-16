@@ -15,6 +15,7 @@ import { Link } from "expo-router";
 import BottomSheet from "./BottomSheet";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useColorScheme } from "nativewind";
+import { useTranslation } from "react-i18next";
 
 const CustomHeader = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -24,7 +25,7 @@ const CustomHeader = () => {
   };
 
   const { colorScheme } = useColorScheme();
-
+  const { t } = useTranslation();
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-black pt-6">
       <BottomSheet ref={bottomSheetRef} />
@@ -39,7 +40,7 @@ const CustomHeader = () => {
           </View>
           <View>
             <Text className="text-[13px] font-bold text-black dark:text-white">
-              Delivery to
+              {t("dTo")}
             </Text>
             <Link href={"/(modal)/location-search"} asChild>
               <TouchableOpacity style={styles.titleContainer}>

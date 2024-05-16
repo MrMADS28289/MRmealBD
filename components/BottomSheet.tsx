@@ -25,6 +25,9 @@ import { AntDesign, Entypo, FontAwesome, Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CheckBox, Switch } from "@rneui/themed";
 import { useAuth } from "../context/useContext";
+import { useTranslation } from "react-i18next";
+import "../i18n";
+
 export type Ref = BottomSheetModal;
 
 const BottomSheet = forwardRef<Ref>((props, ref) => {
@@ -71,6 +74,27 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
 
   const handleLogout = async () => {
     await logout();
+  };
+
+  // translating language
+  const LANG_KEY = "selectedLanguage";
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    const loadLanguage = async () => {
+      const savedLanguage = await AsyncStorage.getItem(LANG_KEY);
+      if (savedLanguage) {
+        i18n.changeLanguage(savedLanguage);
+      }
+    };
+    loadLanguage();
+  }, []);
+
+  // const changeLanguage = (lng: any) => {
+  //   i18n.changeLanguage(lng);
+  // };
+  const changeLanguage = async (lng: any) => {
+    await AsyncStorage.setItem(LANG_KEY, lng);
+    i18n.changeLanguage(lng);
   };
 
   return (
@@ -190,6 +214,17 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
             checkedColor="green"
           />
         </View>
+        {/* Language selection */}
+        <Text style={styles.text}>{t("welcome")}</Text>
+        <Text style={styles.text}>{t("hello")}</Text>
+        <View style={styles.buttonContainer}>
+          <View style={styles.buttonWrapper}>
+            <Button title="English" onPress={() => changeLanguage("en")} />
+          </View>
+          <View style={styles.buttonWrapper}>
+            <Button title="Bangla" onPress={() => changeLanguage("bn")} />
+          </View>
+        </View>
       </View>
     </BottomSheetModal>
   );
@@ -201,6 +236,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
+  },
+  text: {
+    fontSize: 20,
+    margin: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    marginTop: 20,
+  },
+  buttonWrapper: {
+    marginHorizontal: 10,
   },
   footer: {
     position: "absolute",
