@@ -12,7 +12,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { StatusBar } from "expo-status-bar";
 import { Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Loading from "../../components/Loading";

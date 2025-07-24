@@ -89,9 +89,6 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
     loadLanguage();
   }, []);
 
-  // const changeLanguage = (lng: any) => {
-  //   i18n.changeLanguage(lng);
-  // };
   const changeLanguage = async (lng: any) => {
     await AsyncStorage.setItem(LANG_KEY, lng);
     i18n.changeLanguage(lng);
@@ -100,102 +97,160 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
   return (
     <BottomSheetModal
       handleIndicatorStyle={{ display: "none" }}
-      backgroundStyle={{ borderRadius: 13, backgroundColor: Colors.white }}
+      backgroundStyle={{
+        borderRadius: 13,
+        backgroundColor: colorScheme == "dark" ? "#131313" : "white",
+      }}
       overDragResistanceFactor={0}
       ref={ref}
       snapPoints={snapPoints}
       backdropComponent={renderBackdrop}
     >
-      <View>
-        <View className="flex-1 items-center mt-8 pb-4 border-b-2 border-black">
+      <View className="dark:bg-[#131313]">
+        <View className="flex-col items-center pb-4 border-b-2 border-black dark:border-white">
           <View>
-            <View className="border-2 border-black rounded-full">
+            <View className="rounded-full">
               <Image
                 className="h-[90px] w-[90px] rounded-full"
                 source={require("../assets/Images/masum.jpg")}
               />
             </View>
-            <TouchableOpacity className="absolute items-center justify-center bottom-0 right-0 border-2 rounded-full bg-white w-[30px] h-[30px] border-black">
-              <Entypo name="camera" size={20} color="black" />
+            <TouchableOpacity className="absolute items-center justify-center bottom-0 right-0 rounded-full bg-neutral-100 dark:bg-neutral-900 w-[30px] h-[30px]">
+              <Entypo
+                name="camera"
+                size={20}
+                color={colorScheme == "dark" ? Colors.white : Colors.black}
+              />
             </TouchableOpacity>
           </View>
-          <Text className="mt-2 text-xl font-bold text-black">
+          <Text className="mt-2 text-xl font-bold dark:text-white">
             Masum Abduss Sobhan
           </Text>
         </View>
         <View className="mt-6 mx-8">
           <TouchableOpacity>
             <View className="absolute top-0 right-0">
-              <FontAwesome name="edit" size={20} color="black" />
+              <FontAwesome
+                name="edit"
+                size={20}
+                color={colorScheme == "dark" ? Colors.white : Colors.black}
+              />
             </View>
           </TouchableOpacity>
-          <Text className="text-[14px] font-bold text-black">
-            Phone: 01734-326573
+          <Text className="text-[14px] font-bold dark:text-white">
+            {t("uPhone")}: 01734-326573
           </Text>
-          <Text className="text-[14px] font-bold text-black">
-            Email: abduss.sobhan28@gmail.com
+          <Text className="text-[14px] font-bold dark:text-white">
+            {t("uEmail")}: abduss.sobhan28@gmail.com
           </Text>
-          <Text className="text-[14px] font-bold text-black">
-            Address: Horinakundu, Jhenaidah
+          <Text className="text-[14px] font-bold dark:text-white">
+            {t("uAddress")}: Horinakundu, Jhenaidah
           </Text>
         </View>
-        <View style={styles.itemContainer}>
-          <TouchableOpacity style={styles.item}>
-            <AntDesign name="calendar" size={20} color="black" />
-            <Text className="text-black" style={{ flex: 1 }}>
-              My Subscription
+        <View className="m-6">
+          <TouchableOpacity className="flex-row border-b p-2 mt-1 justify-center items-center bg-neutral-50 dark:bg-black">
+            <AntDesign
+              name="calendar"
+              size={20}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
+            <Text className="dark:text-white ml-2" style={{ flex: 1 }}>
+              {t("uSubsc")}
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
+            <Ionicons
+              name="chevron-forward"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.item}>
-            <Ionicons name="wallet-outline" size={22} color={Colors.black} />
-            <Text className="text-black" style={{ flex: 1 }}>
-              Wallet
+          <TouchableOpacity className="flex-row border-b p-2 mt-1 justify-center items-center bg-neutral-50 dark:bg-black">
+            <Ionicons
+              name="wallet-outline"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
+            <Text className="dark:text-white ml-2" style={{ flex: 1 }}>
+              {t("uWallet")}
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
+            <Ionicons
+              name="chevron-forward"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.item}>
-            <Ionicons name="people-outline" size={22} color={Colors.black} />
-            <Text className="text-black" style={{ flex: 1 }}>
-              Reffer and Earn
+          <TouchableOpacity className="flex-row border-b p-2 mt-1 justify-center items-center bg-neutral-50 dark:bg-black">
+            <Ionicons
+              name="people-outline"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
+            <Text className="dark:text-white ml-2" style={{ flex: 1 }}>
+              {t("uReffer")}
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
+            <Ionicons
+              name="chevron-forward"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity className="flex-row border-b p-2 mt-1 justify-center items-center bg-neutral-50 dark:bg-black">
             <Ionicons
               name="help-circle-outline"
               size={24}
-              color={Colors.black}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
             />
-            <Text className="text-black" style={{ flex: 1 }}>
-              Help and Support
+            <Text className="dark:text-white ml-2" style={{ flex: 1 }}>
+              {t("help")}
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
+            <Ionicons
+              name="chevron-forward"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.item}>
-            <AntDesign name="exclamationcircleo" size={20} color="black" />
-            <Text className="text-black" style={{ flex: 1 }}>
-              FAQ's
+          <TouchableOpacity className="flex-row border-b p-2 mt-1 justify-center items-center bg-neutral-50 dark:bg-black">
+            <AntDesign
+              name="exclamationcircleo"
+              size={20}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
+            <Text className="dark:text-white ml-2" style={{ flex: 1 }}>
+              {t("faq")}
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
+            <Ionicons
+              name="chevron-forward"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleLogout} style={styles.item}>
-            <Ionicons name="exit-outline" size={24} color={Colors.black} />
-            <Text className="text-black" style={{ flex: 1 }}>
-              Logout
+          <TouchableOpacity
+            onPress={handleLogout}
+            className="flex-row border-b p-2 mt-1 justify-center items-center bg-neutral-50 dark:bg-black"
+          >
+            <Ionicons
+              name="exit-outline"
+              size={24}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
+            <Text className="dark:text-white ml-2" style={{ flex: 1 }}>
+              {t("logout")}
             </Text>
-            <Ionicons name="chevron-forward" size={22} color={Colors.black} />
+            <Ionicons
+              name="chevron-forward"
+              size={22}
+              color={colorScheme == "dark" ? Colors.white : Colors.black}
+            />
           </TouchableOpacity>
         </View>
       </View>
       <View className="flex-1 dark:bg-black">
         <View className="flex-row justify-center items-center">
-          <Text className="text-black dark:text-white">Dark Mode</Text>
+          <Text className="dark:text-white ml-2"> {t("dark")}</Text>
           <CheckBox
             checked={selectedIndex === "light"}
             onPress={() => toggleColorScheme("light")}
@@ -215,8 +270,6 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
           />
         </View>
         {/* Language selection */}
-        <Text style={styles.text}>{t("welcome")}</Text>
-        <Text style={styles.text}>{t("hello")}</Text>
         <View style={styles.buttonContainer}>
           <View style={styles.buttonWrapper}>
             <Button title="English" onPress={() => changeLanguage("en")} />

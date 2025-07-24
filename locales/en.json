@@ -1,5 +1,16 @@
 {
     "welcome": "Welcome",
     "hello": "Hello",
-    "dTo": "Delivery to"
+    "dTo": "Delivery To",
+    "uPhone": "Phone",
+    "uEmail": "Email",
+    "uAddress": "Address",
+    "uSubsc": "My Subscription",
+    "uWallet": "Wallet",
+    "uReffer": "Reffer and Earn",
+    "help": "Help and Support",
+    "faq": "FAQ's",
+    "logout": "Logout",
+    "language": "Language",
+    "dark": "Dark Mode"
 }
